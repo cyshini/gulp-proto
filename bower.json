@@ -1,0 +1,26 @@
+{
+  "name": "gulp-proto",
+  "version": "0.0.1",
+  "authors": [
+    "Francois Vilaire <francois.vilaire@gmail.com>"
+  ],
+  "description": "A clean Gulp template for personal projects",
+  "main": "gulpfile.js",
+  "keywords": [
+    "static",
+    "site",
+    "template"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/cyshini/gulp-proto#readme",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "~5.5.2"
+  }
+}

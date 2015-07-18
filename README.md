@@ -1,6 +1,6 @@
 # Gulp-proto
 
-A clean and lightweight Gulp template for my personal projects, with all the useful and basic tools for starting awesome things. The project sources have to be committed to the master branch of your repository, while the "gulp deploy" command will automatically build and deploy the website on a gh-pages branch... And that's it !
+A clean and lightweight Gulp template for my personal projects, with all the useful and basic tools for starting awesome things. The project sources have to be committed to the master branch of your repository. The "gulp dist" command will build the website in a "dist" folder while the "gulp deploy" command will deploy it on a gh-pages branch... And that's it !
 
 - - -
 
@@ -13,7 +13,7 @@ A clean and lightweight Gulp template for my personal projects, with all the use
 
 ## Requirement
 
-You need to have `node`, `npm` and `gulp` installed locally to run this project
+You need to have `node`, `npm`, `gulp` and `bower` installed locally to run this project.
 
 ## Demo
 [http://cyshini.github.io/gulp-proto/](http://cyshini.github.io/gulp-proto/)

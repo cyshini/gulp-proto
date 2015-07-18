@@ -38,6 +38,7 @@ gulp.task('watch', function() {
    gulp.watch('assets/js/*.js', ['scripts']);
    gulp.watch('assets/img/*', ['images']);
    gulp.watch(['dist/**']).on('change', livereload.changed);
+   gulp.watch(['*.html']).on('change', livereload.changed);
 });
 
 gulp.task('default', ['sass', 'watch']);

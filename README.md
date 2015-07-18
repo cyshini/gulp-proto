@@ -39,8 +39,8 @@ Commit and push sources to your repository
 
 Build / distribution task (if command line show any error, simply run `gulp clean` and run again previous command)
 
-  gulp dist
+    gulp dist
 
 Deploy on gh-pages (if command line show any error, simply run `gulp clean` and run again previous command)
 
-  gulp deploy
+    gulp deploy

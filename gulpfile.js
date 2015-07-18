@@ -1,5 +1,4 @@
 /* Required plugins */
-
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
@@ -20,13 +19,16 @@ var gzip_options = {
 
 /* Compile Our Sass */
 gulp.task('sass', function() {
-   return gulp.src('assets/css/*.scss')
+   return gulp.src('assets/scss/*.scss')
        .pipe(sass())
+       .pipe(gulp.dest('assets/css'))
        .pipe(gulp.dest('dist/assets/css'))
        .pipe(rename({suffix: '.min'}))
        .pipe(minifycss())
+       .pipe(gulp.dest('assets/css'))
        .pipe(gulp.dest('dist/assets/css'))
        .pipe(gzip(gzip_options))
+       .pipe(gulp.dest('assets/css'))
        .pipe(gulp.dest('dist/assets/css'))
        .pipe(livereload());
 });
@@ -34,7 +36,7 @@ gulp.task('sass', function() {
 /* Watch Files For Changes */
 gulp.task('watch', function() {
    livereload.listen();
-   gulp.watch('assets/css/*.scss', ['sass']);
+   gulp.watch('assets/scss/*.scss', ['sass']);
    gulp.watch('assets/js/*.js', ['scripts']);
    gulp.watch('assets/img/*', ['images']);
    gulp.watch(['dist/**']).on('change', livereload.changed);

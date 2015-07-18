@@ -32,6 +32,12 @@ Initialization
     npm install
     bower install
 
+Compilation, auto-reloading server and watch on all files
+
+    gulp
+    or
+    gulp watch
+
 Commit and push sources to your repository
 
     git commit -am "commit-message"

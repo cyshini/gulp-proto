@@ -1,64 +1,55 @@
-/* Required plugins */
+/* Calling Gulp */
 var gulp = require('gulp');
+
+/* Required plugins */
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var minifycss = require('gulp-minify-css');
 var rename = require('gulp-rename');
-var gzip = require('gulp-gzip');
 var livereload = require('gulp-livereload');
 var ghPages = require('gulp-gh-pages');
 var del = require('del');
 
-/* Configure GZip compression */
-var gzip_options = {
-   threshold: '1kb',
-   gzipOptions: {
-       level: 9
-   }
-};
+/* Paths */
+var source = './_source/';
+var prod = './_build/';
 
-/* Compile Our Sass */
+/* Compile Sass */
 gulp.task('sass', function() {
-   return gulp.src('assets/scss/*.scss')
+   return gulp.src(source + 'assets/scss/*.scss')
        .pipe(sass())
-       .pipe(gulp.dest('assets/css'))
-       .pipe(gulp.dest('dist/assets/css'))
+       .pipe(gulp.dest(source + 'assets/css'))
+       .pipe(gulp.dest(prod + 'assets/css'))
        .pipe(rename({suffix: '.min'}))
        .pipe(minifycss())
-       .pipe(gulp.dest('assets/css'))
-       .pipe(gulp.dest('dist/assets/css'))
-       .pipe(gzip(gzip_options))
-       .pipe(gulp.dest('assets/css'))
-       .pipe(gulp.dest('dist/assets/css'))
+       .pipe(gulp.dest(source + 'assets/css'))
+       .pipe(gulp.dest(prod + 'assets/css'))
        .pipe(livereload());
 });
 
-/* Watch Files For Changes */
+/* Watch files for changes */
 gulp.task('watch', function() {
    livereload.listen();
-   gulp.watch('assets/scss/*.scss', ['sass']);
-   gulp.watch('assets/js/*.js', ['scripts']);
-   gulp.watch('assets/img/*', ['images']);
-   gulp.watch(['dist/**']).on('change', livereload.changed);
+   gulp.watch(source + 'assets/scss/*.scss', ['sass']);
+   gulp.watch(source + 'assets/js/*.js', ['scripts']);
+   gulp.watch(source + 'assets/img/*', ['images']);
    gulp.watch(['*.html']).on('change', livereload.changed);
 });
 
 gulp.task('default', ['sass', 'watch']);
 
-/**
- * Global tasks
- */
+/* Cleaning and deploying */
 gulp.task('dist', ['clean', 'sass'], function(){
-  return gulp.src("*.html", {base: "."})
-  .pipe(gulp.dest("dist/"));
+  return gulp.src(source + '*.html')
+  .pipe(gulp.dest(prod));
 });
 
 gulp.task('clean', function(cb){
-  del([ "dist/" + '**/*', ], cb);
+  del([ prod + '**/*', ], cb);
 });
 
 gulp.task('deploy', ['dist'], function(){
-  return gulp.src('./dist/**/*')
+  return gulp.src(prod + '**/*')
     .pipe(ghPages({
       force: true
     }));

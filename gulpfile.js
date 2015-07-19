@@ -16,7 +16,7 @@ var del = require('del');
 var source = './_source/';
 var prod = './_build/';
 
-/* Compile Sass */
+/* CSS : Sass + autoprefixer + unCSS for keeping only useful CSS + minify */
 gulp.task('sass', function() {
    return gulp.src(source + 'assets/scss/*.scss')
        .pipe(sass())

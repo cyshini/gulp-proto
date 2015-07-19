@@ -1,6 +1,6 @@
 # Gulp-proto
 
-A clean and lightweight Gulp template for my personal projects, with all the useful and basic tools for starting awesome things. The project sources have to be committed to the master branch of your repository. The "gulp dist" command will build the website in a "dist" folder while the "gulp deploy" command will deploy it on a gh-pages branch... And that's it !
+A clean and lightweight Gulp template for my personal projects, with all the useful and basic tools for starting awesome things. The project sources have to be committed to the master branch of your repository. The "gulp build" command will build the website in a "build" folder while the "gulp deploy" command will deploy it on a gh-pages branch... And that's it !
 
 - - -
 
@@ -35,17 +35,15 @@ Initialization
 Compilation, auto-reloading server and watch on all files
 
     gulp
-    or
-    gulp watch
+
+Build / distribution task (if command line show any error, simply run `gulp clean` and run again previous command)
+
+    gulp build
 
 Commit and push sources to your repository
 
     git commit -am "commit-message"
     git push origin master
-
-Build / distribution task (if command line show any error, simply run `gulp clean` and run again previous command)
-
-    gulp dist
 
 Deploy on gh-pages (if command line show any error, simply run `gulp clean` and run again previous command)
 

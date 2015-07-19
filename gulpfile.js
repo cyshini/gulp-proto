@@ -6,6 +6,8 @@ var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var minifycss = require('gulp-minify-css');
 var rename = require('gulp-rename');
+var autoprefixer = require('gulp-autoprefixer');
+var uncss = require('gulp-uncss');
 var livereload = require('gulp-livereload');
 var ghPages = require('gulp-gh-pages');
 var del = require('del');
@@ -18,6 +20,8 @@ var prod = './_build/';
 gulp.task('sass', function() {
    return gulp.src(source + 'assets/scss/*.scss')
        .pipe(sass())
+       .pipe(autoprefixer())
+       .pipe(uncss({html: [source + '*.html']}))
        .pipe(gulp.dest(source + 'assets/css'))
        .pipe(gulp.dest(prod + 'assets/css'))
        .pipe(rename({suffix: '.min'}))
@@ -39,7 +43,7 @@ gulp.task('watch', function() {
 gulp.task('default', ['sass', 'watch']);
 
 /* Cleaning and deploying */
-gulp.task('dist', ['clean', 'sass'], function(){
+gulp.task('build', ['clean', 'sass'], function(){
   return gulp.src(source + '*.html')
   .pipe(gulp.dest(prod));
 });
@@ -48,7 +52,7 @@ gulp.task('clean', function(cb){
   del([ prod + '**/*', ], cb);
 });
 
-gulp.task('deploy', ['dist'], function(){
+gulp.task('deploy', ['build'], function(){
   return gulp.src(prod + '**/*')
     .pipe(ghPages({
       force: true
